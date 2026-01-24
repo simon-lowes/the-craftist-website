@@ -108,10 +108,16 @@ export function Inventory() {
                 ))}
               </ul>
 
-              {/* Browse button */}
-              <button className={`mt-8 w-full py-3 px-4 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-sm font-heading tracking-wider uppercase`}>
-                Browse {category.title}
-              </button>
+              {/* Browse button - links to contact until catalog is ready */}
+              <a
+                href="#contact"
+                className={`mt-8 w-full py-3 px-4 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-sm font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
+              >
+                Inquire About {category.title}
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
             </motion.div>
           ))}
         </div>
