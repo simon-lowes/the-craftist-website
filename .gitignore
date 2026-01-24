@@ -28,3 +28,4 @@ screenshots/
 
 # Temp files
 *.txt
+.vercel
