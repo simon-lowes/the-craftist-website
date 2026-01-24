@@ -1,0 +1,367 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THE CRAFTIST - Design System v2
+   "Entering the Escape Room" - Theatrical, Electric, Bold
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Color Palette - Theatrical Neon */
+  --color-void: #0A0A0A;
+  --color-pitch: #0D0D0D;
+  --color-smoke: #1A1A1A;
+  --color-steel: #2A2A2A;
+  --color-ash: #3A3A3A;
+
+  /* The Signature - Electric Cyan (matches his hair!) */
+  --color-cyan: #00E5FF;
+  --color-cyan-dim: #00B8CC;
+  --color-cyan-glow: #00E5FF80;
+
+  /* Secondary - Theatrical Purple/Magenta */
+  --color-magenta: #E040FB;
+  --color-purple: #9D4EDD;
+  --color-purple-dim: #7B2CBF;
+
+  /* Warm Industrial - Amber/Gold */
+  --color-amber: #F4A627;
+  --color-gold: #FFD700;
+  --color-rust: #CD7F32;
+
+  /* Text */
+  --color-white: #FAFAFA;
+  --color-ghost: #E0E0E0;
+  --color-mist: #A0A0A0;
+
+  /* Typography - Theatrical */
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-heading: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+
+  /* Spacing */
+  --spacing-section: 8rem;
+  --spacing-element: 2rem;
+
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-slow: 800ms;
+  --duration-medium: 400ms;
+  --duration-fast: 150ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base Reset & Defaults
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-void);
+  color: var(--color-ghost);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Typography - Theatrical & Bold
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(4rem, 12vw, 10rem);
+}
+
+h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+p {
+  max-width: 60ch;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Links & Interactive
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+a {
+  color: var(--color-cyan);
+  text-decoration: none;
+  transition: all var(--duration-fast) ease;
+}
+
+a:hover {
+  color: var(--color-white);
+  text-shadow: 0 0 20px var(--color-cyan-glow);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Selection
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+::selection {
+  background-color: var(--color-cyan);
+  color: var(--color-void);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Scrollbar - Industrial
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-pitch);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-steel);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyan);
+  box-shadow: 0 0 10px var(--color-cyan-glow);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Utility Classes - Neon & Glow Effects
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.text-glow-cyan {
+  text-shadow:
+    0 0 10px var(--color-cyan-glow),
+    0 0 20px var(--color-cyan-glow),
+    0 0 40px var(--color-cyan-glow);
+}
+
+.text-glow-magenta {
+  text-shadow:
+    0 0 10px rgba(224, 64, 251, 0.5),
+    0 0 20px rgba(224, 64, 251, 0.5),
+    0 0 40px rgba(224, 64, 251, 0.3);
+}
+
+.text-glow-amber {
+  text-shadow:
+    0 0 10px rgba(244, 166, 39, 0.5),
+    0 0 20px rgba(244, 166, 39, 0.5);
+}
+
+.box-glow-cyan {
+  box-shadow:
+    0 0 20px var(--color-cyan-glow),
+    inset 0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+.border-glow-cyan {
+  border: 1px solid var(--color-cyan);
+  box-shadow:
+    0 0 10px var(--color-cyan-glow),
+    inset 0 0 10px rgba(0, 229, 255, 0.05);
+}
+
+/* Noise/Grain texture overlay */
+.grain-overlay {
+  position: relative;
+}
+
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Scanline effect for retro-futuristic feel */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Brick texture suggestion */
+.brick-texture {
+  background-image:
+    linear-gradient(to bottom, transparent 0%, var(--color-void) 100%),
+    url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h42v22H0V0zm1 1v20h40V1H1zM0 22h42v22H0V22zm21 1v20h20V23H21zm-1 0v20H1V23h19z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Button Styles
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--color-cyan);
+  color: var(--color-void);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px var(--color-cyan-glow);
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--color-cyan);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-cyan);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.btn-outline:hover {
+  background: var(--color-cyan);
+  color: var(--color-void);
+  box-shadow: 0 0 20px var(--color-cyan-glow);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--color-ghost);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-ash);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-ghost);
+  color: var(--color-white);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Card Styles
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.card {
+  background: var(--color-smoke);
+  border: 1px solid var(--color-steel);
+  transition: all var(--duration-medium) ease;
+}
+
+.card:hover {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Animation Keyframes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  52% { opacity: 1; }
+  54% { opacity: 0.9; }
+  56% { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--color-cyan-glow);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--color-cyan-glow), 0 0 60px rgba(0, 229, 255, 0.3);
+  }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.animate-flicker {
+  animation: flicker 3s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
