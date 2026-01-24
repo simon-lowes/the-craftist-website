@@ -46,6 +46,18 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -137,47 +149,48 @@ export function Navigation() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden border-t border-steel/30"
-            >
-              <div className="py-4 space-y-1 bg-pitch/95 backdrop-blur-md">
-                {navItems.map((item) => (
-                  <div key={item.label}>
-                    <a
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block px-4 py-3 text-ghost/80 hover:text-cyan transition-colors font-heading tracking-wide uppercase"
-                    >
-                      {item.label}
-                    </a>
-                    {item.children && (
-                      <div className="pl-8 space-y-1 border-l-2 border-cyan/20 ml-4">
-                        {item.children.map((child) => (
-                          <a
-                            key={child.label}
-                            href={child.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block py-2 text-sm text-mist hover:text-cyan transition-colors"
-                          >
-                            {child.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </nav>
+
+      {/* Mobile Menu - Full screen overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden fixed inset-0 top-20 z-40 bg-pitch/98 backdrop-blur-md overflow-y-auto"
+          >
+            <div className="py-6 px-6 space-y-2 min-h-full">
+              {navItems.map((item) => (
+                <div key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-4 py-3 text-ghost/80 hover:text-cyan transition-colors font-heading tracking-wide uppercase text-lg"
+                  >
+                    {item.label}
+                  </a>
+                  {item.children && (
+                    <div className="pl-8 space-y-1 border-l-2 border-cyan/20 ml-4">
+                      {item.children.map((child) => (
+                        <a
+                          key={child.label}
+                          href={child.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block py-2 text-sm text-mist hover:text-cyan transition-colors"
+                        >
+                          {child.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }
