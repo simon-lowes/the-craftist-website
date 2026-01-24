@@ -4,7 +4,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 md:pt-28 pb-12"
     >
       {/* Dark background with subtle grain */}
       <div className="absolute inset-0 bg-void grain-overlay" />
