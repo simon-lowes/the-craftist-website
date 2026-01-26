@@ -108,7 +108,7 @@ export function Inventory() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group p-6 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500`}
+              className={`group p-6 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500 flex flex-col`}
             >
               {/* Icon */}
               <div className={`w-14 h-14 flex items-center justify-center text-${category.color} mb-4 border border-${category.color}/30 bg-${category.color}/10`}>
@@ -137,7 +137,7 @@ export function Inventory() {
               {/* Browse button - links to contact until catalog is ready */}
               <a
                 href="#contact"
-                className={`mt-6 w-full py-2.5 px-3 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-xs font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
+                className={`mt-auto pt-6 w-full py-2.5 px-3 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-xs font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
               >
                 Inquire
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
