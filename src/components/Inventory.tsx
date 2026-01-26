@@ -110,34 +110,37 @@ export function Inventory() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className={`group p-6 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500 flex flex-col h-full`}
             >
-              {/* Icon */}
-              <div className={`w-14 h-14 flex items-center justify-center text-${category.color} mb-4 border border-${category.color}/30 bg-${category.color}/10`}>
-                {category.icon}
+              {/* Content wrapper - flex-1 pushes button to bottom */}
+              <div className="flex-1">
+                {/* Icon */}
+                <div className={`w-14 h-14 flex items-center justify-center text-${category.color} mb-4 border border-${category.color}/30 bg-${category.color}/10`}>
+                  {category.icon}
+                </div>
+
+                {/* Content */}
+                <h3 className="font-display text-lg text-white mb-2 tracking-wide">
+                  {category.title.toUpperCase()}
+                </h3>
+                <p className="text-ghost/70 text-sm mb-4 font-body">{category.description}</p>
+
+                {/* Items list */}
+                <ul className="space-y-1.5">
+                  {category.items.map((item) => (
+                    <li
+                      key={item}
+                      className={`flex items-center gap-2 text-ghost/60 text-xs font-body`}
+                    >
+                      <span className={`w-1 h-1 bg-${category.color}/50`} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-
-              {/* Content */}
-              <h3 className="font-display text-lg text-white mb-2 tracking-wide">
-                {category.title.toUpperCase()}
-              </h3>
-              <p className="text-ghost/70 text-sm mb-4 font-body">{category.description}</p>
-
-              {/* Items list */}
-              <ul className="space-y-1.5">
-                {category.items.map((item) => (
-                  <li
-                    key={item}
-                    className={`flex items-center gap-2 text-ghost/60 text-xs font-body`}
-                  >
-                    <span className={`w-1 h-1 bg-${category.color}/50`} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
 
               {/* Browse button - links to contact until catalog is ready */}
               <a
                 href="#contact"
-                className={`mt-auto pt-6 w-full py-2.5 px-3 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-xs font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
+                className={`mt-6 w-full py-2.5 px-3 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-xs font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
               >
                 Inquire
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
