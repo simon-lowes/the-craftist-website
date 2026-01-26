@@ -99,7 +99,7 @@ export function Inventory() {
         </motion.div>
 
         {/* Categories */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
           {inventoryCategories.map((category, index) => (
             <motion.div
               key={category.id}
@@ -108,7 +108,7 @@ export function Inventory() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group p-6 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500 flex flex-col`}
+              className={`group p-6 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500 flex flex-col h-full`}
             >
               {/* Icon */}
               <div className={`w-14 h-14 flex items-center justify-center text-${category.color} mb-4 border border-${category.color}/30 bg-${category.color}/10`}>
