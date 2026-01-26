@@ -2,43 +2,69 @@ import { motion } from 'framer-motion'
 
 const inventoryCategories = [
   {
-    id: 'stock',
-    title: 'Pre-built Stock',
+    id: 'prebuilt',
+    title: 'Pre-built Items',
     description:
-      'Structural flats, large-scale sets, and architectural builds available for media hire.',
+      'Ready-to-hire props and builds for immediate use in productions.',
     color: 'cyan',
     icon: (
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     ),
-    items: ['Set flats & walls', 'Architectural elements', 'Large-scale props', 'Modular structures'],
+    items: ['Themed props', 'Display pieces', 'Interactive elements', 'Complete builds'],
   },
   {
     id: 'decor',
     title: 'Decor',
     description:
-      'A curated collection of thematic props and finishing touches for events, film, and photography.',
+      'Curated thematic pieces and finishing touches for events and photography.',
     color: 'magenta',
     icon: (
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
       </svg>
     ),
-    items: ['Themed props', 'Period pieces', 'Event decor', 'Photography backdrops'],
+    items: ['Period pieces', 'Event styling', 'Photography backdrops', 'Themed accents'],
   },
   {
-    id: 'materials',
-    title: 'Materials',
+    id: 'furniture',
+    title: 'Furniture',
     description:
-      'A rotating stock of raw resources for the community—including high-quality timber, plywood, acrylics, and fabrics.',
+      'Vintage, upcycled, and custom furniture pieces for sets and events.',
     color: 'amber',
     icon: (
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     ),
+    items: ['Vintage finds', 'Upcycled pieces', 'Custom builds', 'Statement items'],
+  },
+  {
+    id: 'materials',
+    title: 'Materials',
+    description:
+      'Rotating stock of raw resources for makers—timber, acrylics, fabrics.',
+    color: 'cyan',
+    icon: (
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+      </svg>
+    ),
     items: ['Quality timber', 'Plywood sheets', 'Acrylics', 'Fabrics & textiles'],
+  },
+  {
+    id: 'flats',
+    title: 'Stage Flats',
+    description:
+      'Structural walls, architectural builds, and modular set pieces.',
+    color: 'magenta',
+    icon: (
+      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+      </svg>
+    ),
+    items: ['Set flats & walls', 'Architectural elements', 'Modular structures', 'Large-scale props'],
   },
 ]
 
@@ -73,7 +99,7 @@ export function Inventory() {
         </motion.div>
 
         {/* Categories */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {inventoryCategories.map((category, index) => (
             <motion.div
               key={category.id}
@@ -81,28 +107,28 @@ export function Inventory() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className={`group p-8 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500`}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`group p-6 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500`}
             >
               {/* Icon */}
-              <div className={`w-16 h-16 flex items-center justify-center text-${category.color} mb-6 border border-${category.color}/30 bg-${category.color}/10`}>
+              <div className={`w-14 h-14 flex items-center justify-center text-${category.color} mb-4 border border-${category.color}/30 bg-${category.color}/10`}>
                 {category.icon}
               </div>
 
               {/* Content */}
-              <h3 className="font-display text-2xl text-white mb-3 tracking-wide">
+              <h3 className="font-display text-lg text-white mb-2 tracking-wide">
                 {category.title.toUpperCase()}
               </h3>
-              <p className="text-ghost/70 mb-6 font-body">{category.description}</p>
+              <p className="text-ghost/70 text-sm mb-4 font-body">{category.description}</p>
 
               {/* Items list */}
-              <ul className="space-y-2">
+              <ul className="space-y-1.5">
                 {category.items.map((item) => (
                   <li
                     key={item}
-                    className={`flex items-center gap-2 text-ghost/60 text-sm font-body`}
+                    className={`flex items-center gap-2 text-ghost/60 text-xs font-body`}
                   >
-                    <span className={`w-1.5 h-1.5 bg-${category.color}/50`} />
+                    <span className={`w-1 h-1 bg-${category.color}/50`} />
                     {item}
                   </li>
                 ))}
@@ -111,10 +137,10 @@ export function Inventory() {
               {/* Browse button - links to contact until catalog is ready */}
               <a
                 href="#contact"
-                className={`mt-8 w-full py-3 px-4 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-sm font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
+                className={`mt-6 w-full py-2.5 px-3 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-xs font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
               >
-                Inquire About {category.title}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                Inquire
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>

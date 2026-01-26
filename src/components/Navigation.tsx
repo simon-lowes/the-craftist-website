@@ -15,19 +15,20 @@ const navItems: NavItem[] = [
     label: 'Portfolio',
     href: '#portfolio',
     children: [
-      { label: 'Escape Rooms', href: '#portfolio-escape' },
+      { label: 'Lockhouse Escape Games', href: '#portfolio-lockhouse' },
       { label: 'Carved Work', href: '#portfolio-carved' },
-      { label: 'Other Crafts', href: '#portfolio-crafts' },
-      { label: 'Signs', href: '#portfolio-signs' },
+      { label: 'Signage', href: '#portfolio-signage' },
     ],
   },
   {
     label: 'Inventory',
     href: '#inventory',
     children: [
-      { label: 'Pre-built Stock', href: '#inventory-stock' },
+      { label: 'Pre-built Items', href: '#inventory-prebuilt' },
       { label: 'Decor', href: '#inventory-decor' },
+      { label: 'Furniture', href: '#inventory-furniture' },
       { label: 'Materials', href: '#inventory-materials' },
+      { label: 'Stage Flats', href: '#inventory-flats' },
     ],
   },
   { label: 'Contact', href: '#contact' },
@@ -73,9 +74,12 @@ export function Navigation() {
         <nav className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
-            <a href="#home" className="group flex items-center gap-3">
+            <a href="#home" className="group flex flex-col">
               <span className="font-display text-3xl tracking-wider text-white group-hover:text-cyan transition-colors group-hover:text-glow-cyan">
                 THE CRAFTIST
+              </span>
+              <span className="text-xs text-ghost/60 tracking-wide font-body">
+                formally known as Sanjay
               </span>
             </a>
 

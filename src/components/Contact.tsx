@@ -68,15 +68,71 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="text-white font-heading font-medium mb-1 tracking-wide">LOCATION</h4>
-                  <p className="text-ghost/70 font-body">Littleport, Ely, Cambridgeshire</p>
+                  <p className="text-ghost/70 font-body">
+                    Unit 32 Woodlands Farm<br />
+                    141 Wisbech Rd<br />
+                    Littleport, ELY CB6 1GJ
+                  </p>
                   <a
-                    href="https://www.google.com/maps/place/Littleport,+Ely/@52.4579,-0.0342,13z"
+                    href="https://www.google.com/maps/search/?api=1&query=Unit+32+Woodlands+Farm+141+Wisbech+Rd+Littleport+ELY+CB6+1GJ"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-cyan text-sm hover:text-white transition-colors font-body mt-1 inline-block"
                   >
                     View on Google Maps →
                   </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 flex items-center justify-center text-amber border border-amber/30 bg-amber/10 flex-shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">PHONE</h4>
+                  <a
+                    href="tel:+447510225280"
+                    className="text-ghost/70 hover:text-amber transition-colors font-body"
+                  >
+                    (+44) 07510 225 280
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 flex items-center justify-center text-cyan border border-cyan/30 bg-cyan/10 flex-shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">EMAIL</h4>
+                  <a
+                    href="mailto:thecraftistuk@gmail.com"
+                    className="text-ghost/70 hover:text-cyan transition-colors font-body"
+                  >
+                    thecraftistuk@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 flex items-center justify-center text-magenta border border-magenta/30 bg-magenta/10 flex-shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">HOURS</h4>
+                  <p className="text-ghost/70 font-body">
+                    Mon – Fri: 9am – 5pm<br />
+                    Sat – Sun: 10am – 2pm
+                  </p>
+                  <p className="text-amber text-sm font-body mt-2">
+                    Please call ahead during soft launch
+                  </p>
                 </div>
               </div>
 
@@ -95,7 +151,7 @@ export function Contact() {
                       rel="noopener noreferrer"
                       className="block text-cyan hover:text-white transition-colors font-body"
                     >
-                      @the_craftist (Artist)
+                      @the_craftist (Art)
                     </a>
                     <a
                       href="https://instagram.com/studio32_thecraftist"
@@ -103,7 +159,7 @@ export function Contact() {
                       rel="noopener noreferrer"
                       className="block text-magenta hover:text-white transition-colors font-body"
                     >
-                      @studio32_thecraftist (Studio)
+                      @studio32_thecraftist (Community Scrapstore)
                     </a>
                   </div>
                 </div>
@@ -224,7 +280,7 @@ export function Contact() {
         >
           <div className="relative border border-steel overflow-hidden" style={{ paddingBottom: '25%', minHeight: '200px' }}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38893.89559767476!2d0.2787!3d52.4579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d7f7c6c0d8c0a9%3A0x9b8b9b8b9b8b9b8b!2sLittleport%2C%20Ely!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2424.5!2d0.2787!3d52.4579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8117e7c8e0001%3A0x1!2sUnit%2032%20Woodlands%20Farm%2C%20141%20Wisbech%20Rd%2C%20Littleport%2C%20Ely%20CB6%201GJ!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
               className="absolute inset-0 w-full h-full"
               style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(90%)' }}
               allowFullScreen

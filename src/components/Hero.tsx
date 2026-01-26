@@ -35,14 +35,9 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Tagline */}
-          <span className="block text-cyan text-sm md:text-base font-heading font-medium tracking-[0.3em] uppercase mb-6">
-            Creative Human Multi-Tool
-          </span>
-
           <h1 className="font-display text-white mb-6">
             <span className="block">CREATIVE REUSE.</span>
-            <span className="block text-cyan text-glow-cyan">PROFESSIONAL PRODUCTION.</span>
+            <span className="block text-cyan text-glow-cyan">UNIQUE PRODUCTION.</span>
             <span className="block">COMMUNITY RESOURCE.</span>
           </h1>
         </motion.div>

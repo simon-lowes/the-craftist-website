@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <h3 className="font-display text-3xl text-white mb-4 tracking-wider">THE CRAFTIST</h3>
             <p className="text-ghost/60 text-sm leading-relaxed font-body">
-              Creative Reuse. Professional Production. Community Resource.
+              Creative Reuse. Unique Production. Community Resource.
             </p>
           </div>
 
@@ -66,7 +66,7 @@ export function Footer() {
             &copy; {currentYear} The Craftist. All rights reserved.
           </p>
           <p className="text-mist/50 text-sm font-body">
-            Littleport, Ely, Cambridgeshire
+            Unit 32 Woodlands Farm, Littleport, ELY CB6 1GJ
           </p>
         </div>
       </div>

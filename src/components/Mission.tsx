@@ -7,6 +7,7 @@ const pillars = [
     description:
       'Providing Film, TV, and Media with a sustainable hire library of high-spec builds, offering a green alternative to single-use sets.',
     color: 'cyan',
+    comingSoon: true,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
@@ -93,9 +94,16 @@ export function Mission() {
               </div>
 
               {/* Content */}
-              <h3 className="font-display text-xl text-white mb-4 tracking-wide">
-                {pillar.title.toUpperCase()}
-              </h3>
+              <div className="flex items-center gap-3 mb-4">
+                <h3 className="font-display text-xl text-white tracking-wide">
+                  {pillar.title.toUpperCase()}
+                </h3>
+                {pillar.comingSoon && (
+                  <span className="px-2 py-1 text-xs font-heading tracking-wider uppercase bg-amber/20 text-amber border border-amber/30">
+                    Coming Soon
+                  </span>
+                )}
+              </div>
               <p className="text-ghost/70 leading-relaxed font-body">
                 {pillar.description}
               </p>

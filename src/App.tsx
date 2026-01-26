@@ -1,32 +1,21 @@
-import {
-  Navigation,
-  Footer,
-  Hero,
-  Bio,
-  Mission,
-  Portfolio,
-  Inventory,
-  Contact,
-  InstagramFeed,
-} from './components'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Navigation, Footer } from './components'
+import { Home, Foyer } from './pages'
 
 function App() {
   return (
-    <div className="min-h-screen bg-charcoal">
-      <Navigation />
+    <BrowserRouter>
+      <div className="min-h-screen bg-charcoal">
+        <Navigation />
 
-      <main>
-        <Hero />
-        <Bio />
-        <Mission />
-        <Portfolio />
-        <InstagramFeed username="the_craftist" title="Latest from the Workshop" />
-        <Inventory />
-        <Contact />
-      </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/foyer" element={<Foyer />} />
+        </Routes>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   )
 }
 
