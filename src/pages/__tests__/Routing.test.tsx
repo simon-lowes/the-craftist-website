@@ -2,26 +2,19 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../../App'
 
+const FRAMER_PROPS = new Set(['initial', 'animate', 'exit', 'transition', 'whileInView', 'viewport', 'layout'])
+function filterDOMProps(props: Record<string, unknown>) {
+  return Object.fromEntries(Object.entries(props).filter(([k]) => !FRAMER_PROPS.has(k)))
+}
+
 vi.mock('framer-motion', () => ({
   motion: {
-    header: ({ children, ...props }: any) => {
-      const { initial, animate, exit, transition, whileInView, viewport, layout, ...rest } = props
-      return <header {...rest}>{children}</header>
-    },
-    div: ({ children, ...props }: any) => {
-      const { initial, animate, exit, transition, whileInView, viewport, layout, ...rest } = props
-      return <div {...rest}>{children}</div>
-    },
-    p: ({ children, ...props }: any) => {
-      const { initial, animate, exit, transition, whileInView, viewport, layout, ...rest } = props
-      return <p {...rest}>{children}</p>
-    },
-    a: ({ children, ...props }: any) => {
-      const { initial, animate, exit, transition, whileInView, viewport, layout, ...rest } = props
-      return <a {...rest}>{children}</a>
-    },
+    header: ({ children, ...props }: Record<string, unknown>) => <header {...filterDOMProps(props)}>{children}</header>,
+    div: ({ children, ...props }: Record<string, unknown>) => <div {...filterDOMProps(props)}>{children}</div>,
+    p: ({ children, ...props }: Record<string, unknown>) => <p {...filterDOMProps(props)}>{children}</p>,
+    a: ({ children, ...props }: Record<string, unknown>) => <a {...filterDOMProps(props)}>{children}</a>,
   },
-  AnimatePresence: ({ children }: any) => <>{children}</>,
+  AnimatePresence: ({ children }: Record<string, unknown>) => <>{children}</>,
 }))
 
 // App uses BrowserRouter internally, so we need to override it for tests
@@ -29,7 +22,7 @@ vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom')
   return {
     ...actual,
-    BrowserRouter: ({ children }: any) => <>{children}</>,
+    BrowserRouter: ({ children }: Record<string, unknown>) => <>{children}</>,
   }
 })
 
