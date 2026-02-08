@@ -2,18 +2,17 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Hero } from '../Hero'
 
+const FRAMER_PROPS = new Set(['initial', 'animate', 'exit', 'transition', 'whileInView', 'viewport', 'layout'])
+function filterDOMProps(props: Record<string, unknown>) {
+  return Object.fromEntries(Object.entries(props).filter(([k]) => !FRAMER_PROPS.has(k)))
+}
+
 vi.mock('framer-motion', () => ({
   motion: {
-    div: ({ children, ...props }: any) => {
-      const { initial, animate, exit, transition, whileInView, viewport, layout, ...rest } = props
-      return <div {...rest}>{children}</div>
-    },
-    p: ({ children, ...props }: any) => {
-      const { initial, animate, exit, transition, whileInView, viewport, layout, ...rest } = props
-      return <p {...rest}>{children}</p>
-    },
+    div: ({ children, ...props }: Record<string, unknown>) => <div {...filterDOMProps(props)}>{children}</div>,
+    p: ({ children, ...props }: Record<string, unknown>) => <p {...filterDOMProps(props)}>{children}</p>,
   },
-  AnimatePresence: ({ children }: any) => <>{children}</>,
+  AnimatePresence: ({ children }: Record<string, unknown>) => <>{children}</>,
 }))
 
 describe('Hero', () => {

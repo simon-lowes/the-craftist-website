@@ -3,19 +3,18 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { Navigation } from '../Navigation'
 
-// Mock framer-motion to render children without animation
+const FRAMER_PROPS = new Set(['initial', 'animate', 'exit', 'transition', 'whileInView', 'viewport', 'layout'])
+function filterDOMProps(props: Record<string, unknown>) {
+  return Object.fromEntries(Object.entries(props).filter(([k]) => !FRAMER_PROPS.has(k)))
+}
+
 vi.mock('framer-motion', () => ({
   motion: {
-    header: ({ children, ...props }: any) => <header {...filterDOMProps(props)}>{children}</header>,
-    div: ({ children, ...props }: any) => <div {...filterDOMProps(props)}>{children}</div>,
+    header: ({ children, ...props }: Record<string, unknown>) => <header {...filterDOMProps(props)}>{children}</header>,
+    div: ({ children, ...props }: Record<string, unknown>) => <div {...filterDOMProps(props)}>{children}</div>,
   },
-  AnimatePresence: ({ children }: any) => <>{children}</>,
+  AnimatePresence: ({ children }: Record<string, unknown>) => <>{children}</>,
 }))
-
-function filterDOMProps(props: Record<string, any>) {
-  const { initial, animate, exit, transition, whileInView, viewport, layout, ...rest } = props
-  return rest
-}
 
 function renderNavigation() {
   return render(
