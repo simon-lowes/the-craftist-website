@@ -20,6 +20,13 @@ jobs:
 
       - run: npm ci
 
+      - name: Run Vitest unit tests
+        run: npm run test
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
+
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
