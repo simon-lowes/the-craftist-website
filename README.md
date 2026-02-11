@@ -2,7 +2,7 @@
 
 Portfolio website for The Craftist — a creative studio specialising in prop fabrication, escape room design, relief carving, and custom signage using resourced and reclaimed materials.
 
-**Live site:** [the-craftist.vercel.app](https://the-craftist.vercel.app)
+**Live site:** (https://craftist.simonlowes.cloud/)
 
 ## About
 
