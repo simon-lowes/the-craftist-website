@@ -2,7 +2,7 @@
 
 Portfolio website for The Craftist — a creative studio specialising in prop fabrication, escape room design, relief carving, and custom signage using resourced and reclaimed materials.
 
-**Live site:** https://craftist.simonlowes.cloud
+**Live site:** [craftist.simonlowes.cloud](https://craftist.simonlowes.cloud)
 
 ## About
 
@@ -14,6 +14,7 @@ The Craftist transforms salvaged materials into professional-grade props and env
 - Tailwind CSS 4
 - Framer Motion
 - Vite
+- Deployed on Dokploy (self-hosted VPS)
 
 ## Development
 
