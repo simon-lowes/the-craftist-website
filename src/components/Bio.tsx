@@ -22,6 +22,10 @@ export function Bio() {
               <img
                 src="/images/bio/sanjay-portrait.jpg"
                 alt="Sanjay - The Craftist"
+                width={600}
+                height={750}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-top"
               />
             </div>
