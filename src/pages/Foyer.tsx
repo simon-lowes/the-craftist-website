@@ -1,9 +1,9 @@
-import { m } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 export function Foyer() {
   return (
-    <main id="main-content" className="min-h-screen bg-pitch pt-24">
+    <div className="min-h-screen bg-pitch pt-24">
       {/* Back navigation */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-8">
         <Link
@@ -18,7 +18,7 @@ export function Foyer() {
       </div>
 
       {/* Header */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -34,11 +34,11 @@ export function Foyer() {
           A dramatic transformation between day and night. The foyer showcases how lighting
           and atmosphere can completely change a space.
         </p>
-      </m.div>
+      </motion.div>
 
       {/* Day/Night Comparison - Placeholder */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -62,7 +62,7 @@ export function Foyer() {
                   />
                 </svg>
                 <h3 className="font-display text-xl text-white mb-2">DAY VIEW</h3>
-                <p className="text-mist/80 text-sm font-body">Photos coming soon</p>
+                <p className="text-mist/50 text-sm font-body">Photos coming soon</p>
               </div>
             </div>
             <div className="absolute top-4 left-4 px-3 py-1 bg-amber/20 text-amber border border-amber/30 text-xs font-heading tracking-wider uppercase">
@@ -88,17 +88,17 @@ export function Foyer() {
                   />
                 </svg>
                 <h3 className="font-display text-xl text-white mb-2">NIGHT VIEW</h3>
-                <p className="text-mist/80 text-sm font-body">Photos coming soon</p>
+                <p className="text-mist/50 text-sm font-body">Photos coming soon</p>
               </div>
             </div>
             <div className="absolute top-4 left-4 px-3 py-1 bg-cyan/20 text-cyan border border-cyan/30 text-xs font-heading tracking-wider uppercase">
               Nighttime
             </div>
           </div>
-        </m.div>
+        </motion.div>
 
         {/* Signs & Decor Close-ups Section */}
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -131,10 +131,10 @@ export function Foyer() {
               </div>
             ))}
           </div>
-        </m.div>
+        </motion.div>
 
         {/* Info Notice */}
-        <m.div
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -145,8 +145,8 @@ export function Foyer() {
             High-quality photos of the Foyer featuring day/night contrast and detail shots
             are being prepared. Check back soon!
           </p>
-        </m.div>
+        </motion.div>
       </div>
-    </main>
+    </div>
   )
 }

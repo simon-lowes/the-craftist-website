@@ -2,7 +2,18 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Hero } from '../Hero'
 
-// Hero uses pure CSS animations — no framer-motion mock needed
+const FRAMER_PROPS = new Set(['initial', 'animate', 'exit', 'transition', 'whileInView', 'viewport', 'layout'])
+function filterDOMProps(props: Record<string, unknown>) {
+  return Object.fromEntries(Object.entries(props).filter(([k]) => !FRAMER_PROPS.has(k)))
+}
+
+vi.mock('framer-motion', () => ({
+  motion: {
+    div: ({ children, ...props }: Record<string, unknown>) => <div {...filterDOMProps(props)}>{children}</div>,
+    p: ({ children, ...props }: Record<string, unknown>) => <p {...filterDOMProps(props)}>{children}</p>,
+  },
+  AnimatePresence: ({ children }: Record<string, unknown>) => <>{children}</>,
+}))
 
 describe('Hero', () => {
   beforeEach(() => {
