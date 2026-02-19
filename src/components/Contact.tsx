@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { m } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ export function Contact() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
-          <m.div
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -67,7 +67,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">LOCATION</h3>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">LOCATION</h4>
                   <p className="text-ghost/70 font-body">
                     Unit 32 Woodlands Farm<br />
                     141 Wisbech Rd<br />
@@ -91,7 +91,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">PHONE</h3>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">PHONE</h4>
                   <a
                     href="tel:+447510225280"
                     className="text-ghost/70 hover:text-amber transition-colors font-body"
@@ -108,7 +108,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">EMAIL</h3>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">EMAIL</h4>
                   <a
                     href="mailto:thecraftistuk@gmail.com"
                     className="text-ghost/70 hover:text-cyan transition-colors font-body"
@@ -125,7 +125,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">HOURS</h3>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">HOURS</h4>
                   <p className="text-ghost/70 font-body">
                     Mon – Fri: 9am – 5pm<br />
                     Sat – Sun: 10am – 2pm
@@ -143,7 +143,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">INSTAGRAM</h3>
+                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">INSTAGRAM</h4>
                   <div className="space-y-1">
                     <a
                       href="https://instagram.com/the_craftist"
@@ -165,10 +165,10 @@ export function Contact() {
                 </div>
               </div>
             </div>
-          </m.div>
+          </motion.div>
 
           {/* Contact Form */}
-          <m.div
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -267,11 +267,11 @@ export function Contact() {
                 </button>
               </form>
             )}
-          </m.div>
+          </motion.div>
         </div>
 
         {/* Map Section - Full width below the two columns */}
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -289,7 +289,7 @@ export function Contact() {
               title="Location Map"
             />
           </div>
-        </m.div>
+        </motion.div>
       </div>
     </section>
   )
