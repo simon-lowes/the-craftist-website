@@ -1,4 +1,4 @@
-import { m } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const inventoryCategories = [
   {
@@ -79,7 +79,7 @@ export function Inventory() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -96,12 +96,12 @@ export function Inventory() {
             From complete set pieces to raw materials, browse our current stock
             for your next project.
           </p>
-        </m.div>
+        </motion.div>
 
         {/* Categories */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
           {inventoryCategories.map((category, index) => (
-            <m.div
+            <motion.div
               key={category.id}
               id={`inventory-${category.id}`}
               initial={{ opacity: 0, y: 40 }}
@@ -147,12 +147,12 @@ export function Inventory() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-            </m.div>
+            </motion.div>
           ))}
         </div>
 
         {/* First Draft Notice */}
-        <m.div
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -165,7 +165,7 @@ export function Inventory() {
             A refined digital catalog is coming soon. For specific inquiries,
             please <a href="#contact" className="text-cyan hover:text-white underline transition-colors">contact us directly</a>.
           </p>
-        </m.div>
+        </motion.div>
       </div>
     </section>
   )

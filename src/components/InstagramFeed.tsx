@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { m } from 'framer-motion'
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 interface InstagramFeedProps {
   username: string
@@ -7,49 +7,38 @@ interface InstagramFeedProps {
 }
 
 export function InstagramFeed({ username, title = "Latest from Instagram" }: InstagramFeedProps) {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [scriptLoaded, setScriptLoaded] = useState(false)
-
   useEffect(() => {
-    if (scriptLoaded) return
+    // Load Instagram embed script
+    const script = document.createElement('script')
+    script.src = 'https://www.instagram.com/embed.js'
+    script.async = true
+    document.body.appendChild(script)
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          // Load Instagram embed script only when section is visible
-          const script = document.createElement('script')
-          script.src = 'https://www.instagram.com/embed.js'
-          script.async = true
-          document.body.appendChild(script)
-          script.onload = () => {
-            const win = window as unknown as Record<string, { Embeds: { process: () => void } }>
-            if (win.instgrm) {
-              win.instgrm.Embeds.process()
-            }
-          }
-          setScriptLoaded(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: '200px' }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    // Process embeds when script loads
+    script.onload = () => {
+      if ((window as any).instgrm) {
+        (window as any).instgrm.Embeds.process()
+      }
     }
 
-    return () => observer.disconnect()
-  }, [scriptLoaded])
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector('script[src="https://www.instagram.com/embed.js"]')
+      if (existingScript) {
+        existingScript.remove()
+      }
+    }
+  }, [])
 
   return (
-    <section ref={sectionRef} className="py-20 bg-smoke/50 relative overflow-hidden">
+    <section className="py-20 bg-smoke/50 relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -69,9 +58,9 @@ export function InstagramFeed({ username, title = "Latest from Instagram" }: Ins
             </a>{' '}
             for the latest projects and behind-the-scenes content.
           </p>
-        </m.div>
+        </motion.div>
 
-        <m.div
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -117,10 +106,10 @@ export function InstagramFeed({ username, title = "Latest from Instagram" }: Ins
               </a>
             </div>
           </blockquote>
-        </m.div>
+        </motion.div>
 
         {/* Fallback / Direct Link */}
-        <m.div
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -138,7 +127,7 @@ export function InstagramFeed({ username, title = "Latest from Instagram" }: Ins
             </svg>
             View Full Profile on Instagram
           </a>
-        </m.div>
+        </motion.div>
       </div>
     </section>
   )
