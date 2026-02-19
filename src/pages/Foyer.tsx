@@ -62,7 +62,7 @@ export function Foyer() {
                   />
                 </svg>
                 <h3 className="font-display text-xl text-white mb-2">DAY VIEW</h3>
-                <p className="text-mist/50 text-sm font-body">Photos coming soon</p>
+                <p className="text-mist/80 text-sm font-body">Photos coming soon</p>
               </div>
             </div>
             <div className="absolute top-4 left-4 px-3 py-1 bg-amber/20 text-amber border border-amber/30 text-xs font-heading tracking-wider uppercase">
@@ -88,7 +88,7 @@ export function Foyer() {
                   />
                 </svg>
                 <h3 className="font-display text-xl text-white mb-2">NIGHT VIEW</h3>
-                <p className="text-mist/50 text-sm font-body">Photos coming soon</p>
+                <p className="text-mist/80 text-sm font-body">Photos coming soon</p>
               </div>
             </div>
             <div className="absolute top-4 left-4 px-3 py-1 bg-cyan/20 text-cyan border border-cyan/30 text-xs font-heading tracking-wider uppercase">

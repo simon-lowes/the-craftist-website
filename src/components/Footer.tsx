@@ -15,7 +15,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading text-lg text-cyan mb-4 tracking-wider uppercase">Quick Links</h4>
+            <h3 className="font-heading text-lg text-cyan mb-4 tracking-wider uppercase">Quick Links</h3>
             <ul className="space-y-2">
               {['Portfolio', 'Inventory', 'Mission', 'Contact'].map((link) => (
                 <li key={link}>
@@ -32,7 +32,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="font-heading text-lg text-cyan mb-4 tracking-wider uppercase">Connect</h4>
+            <h3 className="font-heading text-lg text-cyan mb-4 tracking-wider uppercase">Connect</h3>
             <div className="flex gap-4">
               <a
                 href="https://instagram.com/the_craftist"
@@ -62,10 +62,10 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-steel/30 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-mist/50 text-sm font-body">
+          <p className="text-mist/80 text-sm font-body">
             &copy; {currentYear} The Craftist. All rights reserved.
           </p>
-          <p className="text-mist/50 text-sm font-body">
+          <p className="text-mist/80 text-sm font-body">
             Unit 32 Woodlands Farm, Littleport, ELY CB6 1GJ
           </p>
         </div>
