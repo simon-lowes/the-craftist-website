@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 
 interface PortfolioItem {
   id: string
@@ -51,7 +51,7 @@ const portfolioItems: PortfolioItem[] = [
     category: 'lockhouse',
     subCategory: 'Time Machine',
     description: 'Sci-fi control panels with cyan LED matrices, gold industrial frames, and purple atmospheric lighting.',
-    image: '/images/portfolio/escape-room-1.png',
+    image: '/images/portfolio/escape-room-1.webp',
     albumUrl: 'https://photos.app.goo.gl/n9BDLQ1W6BLCyxQF9',
   },
   {
@@ -60,7 +60,7 @@ const portfolioItems: PortfolioItem[] = [
     category: 'lockhouse',
     subCategory: 'Time Machine',
     description: 'Interactive puzzle elements with backlit displays and exposed colored wiring for the immersive experience.',
-    image: '/images/portfolio/escape-room-2.png',
+    image: '/images/portfolio/escape-room-2.webp',
     albumUrl: 'https://photos.app.goo.gl/n9BDLQ1W6BLCyxQF9',
   },
   {
@@ -69,7 +69,7 @@ const portfolioItems: PortfolioItem[] = [
     category: 'lockhouse',
     subCategory: 'Time Machine',
     description: '75% constructed from resourced materials, delivering a world-class environment at near-zero material cost.',
-    image: '/images/portfolio/escape-room-3.png',
+    image: '/images/portfolio/escape-room-3.webp',
     albumUrl: 'https://photos.app.goo.gl/n9BDLQ1W6BLCyxQF9',
   },
   // Signage
@@ -78,7 +78,7 @@ const portfolioItems: PortfolioItem[] = [
     title: 'Time Machine Sign',
     category: 'signage',
     description: 'Custom illuminated signage with cyan LEDs, industrial gears, and gold framing - the entrance to the Time Machine escape room.',
-    image: '/images/portfolio/time-machine-sign.png',
+    image: '/images/portfolio/time-machine-sign.webp',
     albumUrl: 'https://photos.app.goo.gl/vD3oK7ysvcTFhqBE7',
   },
   // Carved Work
@@ -87,7 +87,7 @@ const portfolioItems: PortfolioItem[] = [
     title: 'Relief Carving - Triptych',
     category: 'carved',
     description: 'Handmade frame with cyan and magenta dotted pattern, featuring multiple textured relief panels.',
-    image: '/images/portfolio/relief-carving-1.png',
+    image: '/images/portfolio/relief-carving-1.webp',
     albumUrl: 'https://photos.app.goo.gl/KeqddgEtgmxKnRxN6',
   },
   {
@@ -95,7 +95,7 @@ const portfolioItems: PortfolioItem[] = [
     title: 'Relief Carving - Diptych',
     category: 'carved',
     description: 'Bold orange and gold striped frame with copper and green textured relief panels.',
-    image: '/images/portfolio/relief-carving-2.png',
+    image: '/images/portfolio/relief-carving-2.webp',
     albumUrl: 'https://photos.app.goo.gl/KeqddgEtgmxKnRxN6',
   },
   {
@@ -103,7 +103,7 @@ const portfolioItems: PortfolioItem[] = [
     title: 'Relief Carving - Composition',
     category: 'carved',
     description: 'Complex multi-panel composition with flowing organic forms in purple, green, and copper tones.',
-    image: '/images/portfolio/relief-carving-3.png',
+    image: '/images/portfolio/relief-carving-3.webp',
     albumUrl: 'https://photos.app.goo.gl/KeqddgEtgmxKnRxN6',
   },
 ]
@@ -128,7 +128,7 @@ export function Portfolio() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -145,10 +145,10 @@ export function Portfolio() {
             A showcase of 5 years crafting immersive environments, bespoke sculptures,
             and handcrafted signage.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Category Filter */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -173,11 +173,11 @@ export function Portfolio() {
               )}
             </button>
           ))}
-        </motion.div>
+        </m.div>
 
         {/* Coming Soon State */}
         {isComingSoon ? (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-24"
@@ -191,12 +191,12 @@ export function Portfolio() {
             <p className="text-ghost/70 max-w-md mx-auto font-body">
               This gallery is being prepared. Check back soon for {currentCategory?.label} content.
             </p>
-          </motion.div>
+          </m.div>
         ) : (
           <>
             {/* Lockhouse Sub-categories notice */}
             {activeCategory === 'lockhouse' && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="mb-8 p-4 bg-cyan/10 border border-cyan/30"
@@ -207,14 +207,14 @@ export function Portfolio() {
                   <span className="text-white">Time Machine</span>, and{' '}
                   <Link to="/foyer" className="text-cyan hover:text-white underline">The Foyer</Link> (view separately).
                 </p>
-              </motion.div>
+              </m.div>
             )}
 
             {/* Portfolio Grid */}
-            <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <m.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <AnimatePresence mode="popLayout">
                 {filteredItems.map((item, index) => (
-                  <motion.a
+                  <m.a
                     key={item.id}
                     href={item.albumUrl}
                     target="_blank"
@@ -290,14 +290,14 @@ export function Portfolio() {
                         </span>
                       )}
                     </div>
-                  </motion.a>
+                  </m.a>
                 ))}
               </AnimatePresence>
-            </motion.div>
+            </m.div>
 
             {/* Notable Achievement */}
             {(activeCategory === 'all' || activeCategory === 'lockhouse') && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -309,7 +309,7 @@ export function Portfolio() {
                   75% of the Time Machine was constructed from resourced materials,
                   delivering a world-class environment at near-zero material cost.
                 </p>
-              </motion.div>
+              </m.div>
             )}
           </>
         )}

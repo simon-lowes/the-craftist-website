@@ -3,18 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import { Navigation } from '../Navigation'
 
-const FRAMER_PROPS = new Set(['initial', 'animate', 'exit', 'transition', 'whileInView', 'viewport', 'layout'])
-function filterDOMProps(props: Record<string, unknown>) {
-  return Object.fromEntries(Object.entries(props).filter(([k]) => !FRAMER_PROPS.has(k)))
-}
-
-vi.mock('framer-motion', () => ({
-  motion: {
-    header: ({ children, ...props }: Record<string, unknown>) => <header {...filterDOMProps(props)}>{children}</header>,
-    div: ({ children, ...props }: Record<string, unknown>) => <div {...filterDOMProps(props)}>{children}</div>,
-  },
-  AnimatePresence: ({ children }: Record<string, unknown>) => <>{children}</>,
-}))
+// Navigation uses pure CSS animations — no framer-motion mock needed
 
 function renderNavigation() {
   return render(
