@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const pillars = [
   {
@@ -51,7 +51,7 @@ export function Mission() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -70,12 +70,12 @@ export function Mission() {
             providing a circular home for professional-grade props, sets, and
             materials."
           </blockquote>
-        </motion.div>
+        </m.div>
 
         {/* Pillars */}
         <div className="grid md:grid-cols-3 gap-8">
           {pillars.map((pillar, index) => (
-            <motion.div
+            <m.div
               key={pillar.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +107,7 @@ export function Mission() {
               <p className="text-ghost/70 leading-relaxed font-body">
                 {pillar.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

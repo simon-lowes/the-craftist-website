@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -40,7 +40,7 @@ export function Contact() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -165,10 +165,10 @@ export function Contact() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Contact Form */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -267,11 +267,11 @@ export function Contact() {
                 </button>
               </form>
             )}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Map Section - Full width below the two columns */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -289,7 +289,7 @@ export function Contact() {
               title="Location Map"
             />
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )
