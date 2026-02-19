@@ -10,7 +10,7 @@ import {
 
 export function Home() {
   return (
-    <main>
+    <main id="main-content">
       <Hero />
       <Bio />
       <Mission />

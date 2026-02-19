@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export function Foyer() {
   return (
-    <div className="min-h-screen bg-pitch pt-24">
+    <main id="main-content" className="min-h-screen bg-pitch pt-24">
       {/* Back navigation */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-8">
         <Link
@@ -147,6 +147,6 @@ export function Foyer() {
           </p>
         </motion.div>
       </div>
-    </div>
+    </main>
   )
 }
