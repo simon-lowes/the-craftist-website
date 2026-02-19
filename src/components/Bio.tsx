@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 export function Bio() {
   return (
@@ -11,7 +11,7 @@ export function Bio() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image placeholder */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -20,7 +20,7 @@ export function Bio() {
           >
             <div className="aspect-[4/5] bg-smoke overflow-hidden border border-steel">
               <img
-                src="/images/bio/sanjay-portrait.jpg"
+                src="/images/bio/sanjay-portrait.webp"
                 alt="Sanjay - The Craftist"
                 width={600}
                 height={750}
@@ -33,10 +33,10 @@ export function Bio() {
             {/* Neon accent frame */}
             <div className="absolute -bottom-4 -right-4 w-full h-full border-2 border-cyan/40 -z-10" />
             <div className="absolute -bottom-8 -right-8 w-full h-full border border-magenta/20 -z-20" />
-          </motion.div>
+          </m.div>
 
           {/* Content */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -93,7 +93,7 @@ export function Bio() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

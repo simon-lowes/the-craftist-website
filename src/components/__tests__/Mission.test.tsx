@@ -2,17 +2,24 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Mission } from '../Mission'
 
-const FRAMER_PROPS = new Set(['initial', 'animate', 'exit', 'transition', 'whileInView', 'viewport', 'layout'])
-function filterDOMProps(props: Record<string, unknown>) {
-  return Object.fromEntries(Object.entries(props).filter(([k]) => !FRAMER_PROPS.has(k)))
-}
+const { filterDOMProps } = vi.hoisted(() => {
+  const FRAMER_PROPS = new Set(['initial', 'animate', 'exit', 'transition', 'whileInView', 'viewport', 'layout'])
+  return {
+    filterDOMProps: (props: Record<string, unknown>) =>
+      Object.fromEntries(Object.entries(props).filter(([k]) => !FRAMER_PROPS.has(k))),
+  }
+})
 
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: Record<string, unknown>) => <div {...filterDOMProps(props)}>{children}</div>,
-  },
-  AnimatePresence: ({ children }: Record<string, unknown>) => <>{children}</>,
-}))
+vi.mock('framer-motion', () => {
+  const mockDiv = ({ children, ...props }: Record<string, unknown>) => <div {...filterDOMProps(props)}>{children}</div>
+  return {
+    motion: { div: mockDiv },
+    m: { div: mockDiv },
+    AnimatePresence: ({ children }: Record<string, unknown>) => <>{children}</>,
+    LazyMotion: ({ children }: Record<string, unknown>) => <>{children}</>,
+    domAnimation: {},
+  }
+})
 
 describe('Mission', () => {
   beforeEach(() => {

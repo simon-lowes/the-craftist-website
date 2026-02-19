@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
 export function Foyer() {
@@ -18,7 +18,7 @@ export function Foyer() {
       </div>
 
       {/* Header */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -34,11 +34,11 @@ export function Foyer() {
           A dramatic transformation between day and night. The foyer showcases how lighting
           and atmosphere can completely change a space.
         </p>
-      </motion.div>
+      </m.div>
 
       {/* Day/Night Comparison - Placeholder */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -95,10 +95,10 @@ export function Foyer() {
               Nighttime
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Signs & Decor Close-ups Section */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -131,10 +131,10 @@ export function Foyer() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Info Notice */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -145,7 +145,7 @@ export function Foyer() {
             High-quality photos of the Foyer featuring day/night contrast and detail shots
             are being prepared. Check back soon!
           </p>
-        </motion.div>
+        </m.div>
       </div>
     </main>
   )
