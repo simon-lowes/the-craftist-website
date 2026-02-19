@@ -67,7 +67,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">LOCATION</h4>
+                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">LOCATION</h3>
                   <p className="text-ghost/70 font-body">
                     Unit 32 Woodlands Farm<br />
                     141 Wisbech Rd<br />
@@ -91,7 +91,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">PHONE</h4>
+                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">PHONE</h3>
                   <a
                     href="tel:+447510225280"
                     className="text-ghost/70 hover:text-amber transition-colors font-body"
@@ -108,7 +108,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">EMAIL</h4>
+                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">EMAIL</h3>
                   <a
                     href="mailto:thecraftistuk@gmail.com"
                     className="text-ghost/70 hover:text-cyan transition-colors font-body"
@@ -125,7 +125,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">HOURS</h4>
+                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">HOURS</h3>
                   <p className="text-ghost/70 font-body">
                     Mon – Fri: 9am – 5pm<br />
                     Sat – Sun: 10am – 2pm
@@ -143,7 +143,7 @@ export function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-white font-heading font-medium mb-1 tracking-wide">INSTAGRAM</h4>
+                  <h3 className="text-base text-white font-heading font-medium mb-1 tracking-wide">INSTAGRAM</h3>
                   <div className="space-y-1">
                     <a
                       href="https://instagram.com/the_craftist"
