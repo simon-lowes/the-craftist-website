@@ -28,7 +28,6 @@ screenshots/
 
 # Temp files
 *.txt
-.vercel
 
 # Documentation
 docs/
