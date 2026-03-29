@@ -87,7 +87,7 @@ jobs:
   auto-merge:
     runs-on: ubuntu-latest
     needs: [claude-review]
-    if: always() && github.actor == 'dependabot[bot]'
+    if: needs.claude-review.result == 'success' && github.actor == 'dependabot[bot]'
     steps:
       - name: Fetch Dependabot metadata
         id: metadata
@@ -95,10 +95,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Auto-merge when CI passes
-        run: |
-          gh pr review --approve "$PR_URL" --body "CI and Claude review passed. Auto-merging."
-          gh pr merge --auto --squash "$PR_URL"
+      - name: Enable auto-merge
+        run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
