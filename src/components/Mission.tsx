@@ -1,6 +1,38 @@
 import { motion } from 'framer-motion'
 
-const pillars = [
+// Full literal Tailwind class strings per accent color. Tailwind v4's JIT only
+// emits a rule when the complete class appears in source, so these must not be
+// built by interpolation.
+const colorClasses = {
+  cyan: {
+    hoverBorder: 'hover:border-cyan/50',
+    number: 'group-hover:text-cyan/20',
+    icon: 'text-cyan border-cyan/30 bg-cyan/10',
+  },
+  magenta: {
+    hoverBorder: 'hover:border-magenta/50',
+    number: 'group-hover:text-magenta/20',
+    icon: 'text-magenta border-magenta/30 bg-magenta/10',
+  },
+  amber: {
+    hoverBorder: 'hover:border-amber/50',
+    number: 'group-hover:text-amber/20',
+    icon: 'text-amber border-amber/30 bg-amber/10',
+  },
+} as const
+
+type AccentColor = keyof typeof colorClasses
+
+interface Pillar {
+  number: string
+  title: string
+  description: string
+  color: AccentColor
+  comingSoon?: boolean
+  icon: React.ReactNode
+}
+
+const pillars: Pillar[] = [
   {
     number: '01',
     title: 'The Prop House',
@@ -74,22 +106,24 @@ export function Mission() {
 
         {/* Pillars */}
         <div className="grid md:grid-cols-3 gap-8">
-          {pillars.map((pillar, index) => (
+          {pillars.map((pillar, index) => {
+            const accent = colorClasses[pillar.color]
+            return (
             <motion.div
               key={pillar.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className={`group relative p-8 bg-smoke/50 border border-steel hover:border-${pillar.color}/50 transition-all duration-500`}
+              className={`group relative p-8 bg-smoke/50 border border-steel ${accent.hoverBorder} transition-all duration-500`}
             >
               {/* Number */}
-              <span className={`absolute top-6 right-6 text-6xl font-display text-steel/50 group-hover:text-${pillar.color}/20 transition-colors`}>
+              <span className={`absolute top-6 right-6 text-6xl font-display text-steel/50 ${accent.number} transition-colors`}>
                 {pillar.number}
               </span>
 
               {/* Icon */}
-              <div className={`w-14 h-14 flex items-center justify-center text-${pillar.color} mb-6 border border-${pillar.color}/30 bg-${pillar.color}/10`}>
+              <div className={`w-14 h-14 flex items-center justify-center mb-6 border ${accent.icon}`}>
                 {pillar.icon}
               </div>
 
@@ -108,7 +142,8 @@ export function Mission() {
                 {pillar.description}
               </p>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

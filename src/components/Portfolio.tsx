@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -108,8 +108,33 @@ const portfolioItems: PortfolioItem[] = [
   },
 ]
 
+// Map a #portfolio-<category> hash to a known category id, or null.
+function categoryFromHash(hash: string): string | null {
+  const match = hash.match(/^#portfolio-(.+)$/)
+  if (match && categories.some((c) => c.id === match[1])) {
+    return match[1]
+  }
+  return null
+}
+
 export function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeCategory, setActiveCategory] = useState(
+    () => categoryFromHash(window.location.hash) ?? 'all',
+  )
+
+  // Activate the matching filter when a deep-link like #portfolio-lockhouse is
+  // navigated to while the page is already mounted (the nav uses native anchors,
+  // which fire hashchange).
+  useEffect(() => {
+    const onHashChange = () => {
+      const category = categoryFromHash(window.location.hash)
+      if (category) {
+        setActiveCategory(category)
+      }
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
 
   const filteredItems =
     activeCategory === 'all'
@@ -125,6 +150,19 @@ export function Portfolio() {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-steel/50 to-transparent" />
       </div>
+
+      {/* Stable anchor targets for deep-links (e.g. #portfolio-lockhouse) that
+          remain in the DOM regardless of the active category filter. */}
+      {categories
+        .filter((c) => c.id !== 'all')
+        .map((c) => (
+          <span
+            key={c.id}
+            id={`portfolio-${c.id}`}
+            aria-hidden="true"
+            className="absolute -top-20"
+          />
+        ))}
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
@@ -225,7 +263,7 @@ export function Portfolio() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.4, delay: index * 0.05 }}
                     className="group relative aspect-[4/3] bg-smoke overflow-hidden cursor-pointer border border-steel hover:border-cyan/50 transition-colors block"
-                    id={`portfolio-${item.category}`}
+                    id={`portfolio-${item.id}`}
                   >
                     {/* Portfolio Image */}
                     {item.image ? (

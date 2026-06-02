@@ -62,6 +62,9 @@ test.describe('Accessibility', () => {
   })
 
   test('interactive elements are keyboard accessible', async ({ page }) => {
+    // The "Toggle menu" button is lg:hidden, so it only renders below the 1024px
+    // breakpoint. Use a mobile viewport so the button is visible and focusable.
+    await page.setViewportSize({ width: 375, height: 800 })
     await page.goto('/')
     await page.waitForLoadState('domcontentloaded')
 

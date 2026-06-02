@@ -1,6 +1,41 @@
 import { motion } from 'framer-motion'
 
-const inventoryCategories = [
+// Full literal Tailwind class strings per accent color. Tailwind v4's JIT only
+// emits a rule when the complete class appears in source, so these must not be
+// built by interpolation.
+const colorClasses = {
+  cyan: {
+    hoverBorder: 'hover:border-cyan/50',
+    icon: 'text-cyan border-cyan/30 bg-cyan/10',
+    bullet: 'bg-cyan/50',
+    inquireHover: 'hover:bg-cyan/20 hover:border-cyan/50',
+  },
+  magenta: {
+    hoverBorder: 'hover:border-magenta/50',
+    icon: 'text-magenta border-magenta/30 bg-magenta/10',
+    bullet: 'bg-magenta/50',
+    inquireHover: 'hover:bg-magenta/20 hover:border-magenta/50',
+  },
+  amber: {
+    hoverBorder: 'hover:border-amber/50',
+    icon: 'text-amber border-amber/30 bg-amber/10',
+    bullet: 'bg-amber/50',
+    inquireHover: 'hover:bg-amber/20 hover:border-amber/50',
+  },
+} as const
+
+type AccentColor = keyof typeof colorClasses
+
+interface InventoryCategory {
+  id: string
+  title: string
+  description: string
+  color: AccentColor
+  icon: React.ReactNode
+  items: string[]
+}
+
+const inventoryCategories: InventoryCategory[] = [
   {
     id: 'prebuilt',
     title: 'Pre-built Items',
@@ -100,7 +135,9 @@ export function Inventory() {
 
         {/* Categories */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
-          {inventoryCategories.map((category, index) => (
+          {inventoryCategories.map((category, index) => {
+            const accent = colorClasses[category.color]
+            return (
             <motion.div
               key={category.id}
               id={`inventory-${category.id}`}
@@ -108,12 +145,12 @@ export function Inventory() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group p-6 bg-smoke/50 border border-steel hover:border-${category.color}/50 transition-all duration-500 flex flex-col h-full`}
+              className={`group p-6 bg-smoke/50 border border-steel ${accent.hoverBorder} transition-all duration-500 flex flex-col h-full`}
             >
               {/* Content wrapper - flex-1 pushes button to bottom */}
               <div className="flex-1">
                 {/* Icon */}
-                <div className={`w-14 h-14 flex items-center justify-center text-${category.color} mb-4 border border-${category.color}/30 bg-${category.color}/10`}>
+                <div className={`w-14 h-14 flex items-center justify-center mb-4 border ${accent.icon}`}>
                   {category.icon}
                 </div>
 
@@ -130,7 +167,7 @@ export function Inventory() {
                       key={item}
                       className={`flex items-center gap-2 text-ghost/60 text-xs font-body`}
                     >
-                      <span className={`w-1 h-1 bg-${category.color}/50`} />
+                      <span className={`w-1 h-1 ${accent.bullet}`} />
                       {item}
                     </li>
                   ))}
@@ -140,7 +177,7 @@ export function Inventory() {
               {/* Browse button - links to contact until catalog is ready */}
               <a
                 href="#contact"
-                className={`mt-6 w-full py-2.5 px-3 bg-smoke hover:bg-${category.color}/20 text-ghost/80 hover:text-white border border-steel hover:border-${category.color}/50 transition-colors text-xs font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
+                className={`mt-6 w-full py-2.5 px-3 bg-smoke ${accent.inquireHover} text-ghost/80 hover:text-white border border-steel transition-colors text-xs font-heading tracking-wider uppercase flex items-center justify-center gap-2`}
               >
                 Inquire
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,7 +185,8 @@ export function Inventory() {
                 </svg>
               </a>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
 
         {/* First Draft Notice */}

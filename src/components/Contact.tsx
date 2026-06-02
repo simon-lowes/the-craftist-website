@@ -10,17 +10,49 @@ export function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  // Configure a form endpoint (e.g. Formspree, Netlify, or a serverless function)
+  // via VITE_CONTACT_ENDPOINT. Without it the form cannot transmit and we surface
+  // an honest error rather than faking success.
+  const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
+
+    if (!endpoint) {
+      setError(
+        'The contact form is not configured yet. Please email thecraftistuk@gmail.com directly.',
+      )
+      return
+    }
+
     setIsSubmitting(true)
 
-    // Simulate form submission - replace with actual form handler (Formspree, etc.)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-    setIsSubmitting(false)
-    setSubmitted(true)
-    setFormData({ name: '', email: '', subject: '', message: '' })
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`)
+      }
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    } catch {
+      setError(
+        'Something went wrong sending your message. Please try again, or email thecraftistuk@gmail.com directly.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (
@@ -188,6 +220,14 @@ export function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div
+                    role="alert"
+                    className="p-4 bg-magenta/10 border border-magenta/30 text-magenta text-sm font-body"
+                  >
+                    {error}
+                  </div>
+                )}
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-ghost/80 text-sm mb-2 font-heading tracking-wide uppercase">

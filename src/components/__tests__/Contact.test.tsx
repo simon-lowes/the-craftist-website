@@ -24,6 +24,17 @@ function renderContact() {
 }
 
 describe('Contact', () => {
+  const ENDPOINT = 'https://example.test/contact'
+
+  beforeEach(() => {
+    vi.stubEnv('VITE_CONTACT_ENDPOINT', ENDPOINT)
+  })
+
+  afterEach(() => {
+    vi.unstubAllEnvs()
+    vi.restoreAllMocks()
+  })
+
   it('renders the section heading', () => {
     renderContact()
     expect(screen.getByText("LET'S CREATE SOMETHING")).toBeInTheDocument()
@@ -76,7 +87,10 @@ describe('Contact', () => {
     expect(select).toHaveValue('commission')
   })
 
-  it('shows success message after submission', async () => {
+  it('posts the form data to the configured endpoint and shows success', async () => {
+    const fetchMock = vi
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response(null, { status: 200 }))
     const user = userEvent.setup()
     renderContact()
 
@@ -87,8 +101,53 @@ describe('Contact', () => {
 
     await user.click(screen.getByRole('button', { name: /Send Message/i }))
 
-    // Wait for the simulated submission
     expect(await screen.findByText('MESSAGE SENT!')).toBeInTheDocument()
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    const [url, init] = fetchMock.mock.calls[0]
+    expect(url).toBe(ENDPOINT)
+    expect(init?.method).toBe('POST')
+    expect(JSON.parse(init?.body as string)).toMatchObject({
+      name: 'Test User',
+      email: 'test@example.com',
+      subject: 'commission',
+      message: 'Hello!',
+    })
+  })
+
+  it('shows an error and does not fake success when the request fails', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(null, { status: 500 }),
+    )
+    const user = userEvent.setup()
+    renderContact()
+
+    await user.type(screen.getByLabelText(/Name/i), 'Test User')
+    await user.type(screen.getByLabelText(/Email/i), 'test@example.com')
+    await user.selectOptions(screen.getByLabelText(/interested in/i), 'commission')
+    await user.type(screen.getByLabelText(/Message/i), 'Hello!')
+
+    await user.click(screen.getByRole('button', { name: /Send Message/i }))
+
+    expect(await screen.findByRole('alert')).toBeInTheDocument()
+    expect(screen.queryByText('MESSAGE SENT!')).not.toBeInTheDocument()
+  })
+
+  it('warns and does not submit when no endpoint is configured', async () => {
+    vi.stubEnv('VITE_CONTACT_ENDPOINT', '')
+    const fetchMock = vi.spyOn(globalThis, 'fetch')
+    const user = userEvent.setup()
+    renderContact()
+
+    await user.type(screen.getByLabelText(/Name/i), 'Test User')
+    await user.type(screen.getByLabelText(/Email/i), 'test@example.com')
+    await user.selectOptions(screen.getByLabelText(/interested in/i), 'commission')
+    await user.type(screen.getByLabelText(/Message/i), 'Hello!')
+
+    await user.click(screen.getByRole('button', { name: /Send Message/i }))
+
+    expect(await screen.findByRole('alert')).toBeInTheDocument()
+    expect(fetchMock).not.toHaveBeenCalled()
+    expect(screen.queryByText('MESSAGE SENT!')).not.toBeInTheDocument()
   })
 
   it('renders the map iframe', () => {
