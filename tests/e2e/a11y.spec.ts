@@ -2,6 +2,15 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
 test.describe('Accessibility', () => {
+  // The home page mounts InstagramFeed, which injects Meta's third-party
+  // embed.js. It renders an untitled <iframe> non-deterministically, causing an
+  // intermittent 'frame-title' violation depending on whether it loads before
+  // axe runs. Abort the request so this third-party flakiness is removed
+  // entirely and the a11y results reflect only the app's own markup.
+  test.beforeEach(async ({ page }) => {
+    await page.route('**instagram.com**', (route) => route.abort())
+  })
+
   test('home page has no critical a11y violations', async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('domcontentloaded')
