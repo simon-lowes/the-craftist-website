@@ -132,9 +132,20 @@ describe('Contact', () => {
     expect(screen.queryByText('MESSAGE SENT!')).not.toBeInTheDocument()
   })
 
-  it('warns and does not submit when no endpoint is configured', async () => {
+  it('opens a pre-filled mailto and does not fake success when no endpoint is configured', async () => {
     vi.stubEnv('VITE_CONTACT_ENDPOINT', '')
     const fetchMock = vi.spyOn(globalThis, 'fetch')
+
+    // Capture mailto handoff without triggering a real navigation in jsdom.
+    let hrefSet: string | undefined
+    const hrefSetter = vi.fn((value: string) => {
+      hrefSet = value
+    })
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: { ...window.location, set href(value: string) { hrefSetter(value) } },
+    })
+
     const user = userEvent.setup()
     renderContact()
 
@@ -145,9 +156,25 @@ describe('Contact', () => {
 
     await user.click(screen.getByRole('button', { name: /Send Message/i }))
 
-    expect(await screen.findByRole('alert')).toBeInTheDocument()
+    expect(
+      await screen.findByText(/email app should open/i),
+    ).toBeInTheDocument()
     expect(fetchMock).not.toHaveBeenCalled()
     expect(screen.queryByText('MESSAGE SENT!')).not.toBeInTheDocument()
+
+    expect(hrefSetter).toHaveBeenCalledTimes(1)
+    const expectedBody = encodeURIComponent(
+      [
+        'Name: Test User',
+        'Email (reply-to): test@example.com',
+        '',
+        'Message:',
+        'Hello!',
+      ].join('\n'),
+    )
+    expect(hrefSet).toBe(
+      `mailto:thecraftistuk@gmail.com?subject=${encodeURIComponent('commission')}&body=${expectedBody}`,
+    )
   })
 
   it('renders the map iframe', () => {
