@@ -5,6 +5,7 @@ export default defineConfig({
   timeout: 30_000,
   expect: { timeout: 5000 },
   fullyParallel: false,
+  use: { baseURL: 'http://localhost:5173' },
   webServer: {
     command: 'npm run build && npm run preview -- --port 5173',
     url: 'http://localhost:5173',

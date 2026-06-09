@@ -10,17 +10,61 @@ export function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [mailtoOpened, setMailtoOpened] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  // Configure a form endpoint (e.g. Formspree, Netlify, or a serverless function)
+  // via VITE_CONTACT_ENDPOINT. Without it we fall back to opening the visitor's
+  // own email client with a pre-filled message — no backend required.
+  const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
+
+    if (!endpoint) {
+      // No backend configured: compose a pre-filled email and hand off to the
+      // visitor's mail client via mailto. We do NOT claim the message was sent.
+      const subject = formData.subject || 'Enquiry from The Craftist website'
+      const body = [
+        `Name: ${formData.name}`,
+        `Email (reply-to): ${formData.email}`,
+        '',
+        'Message:',
+        formData.message,
+      ].join('\n')
+      window.location.href = `mailto:thecraftistuk@gmail.com?subject=${encodeURIComponent(
+        subject,
+      )}&body=${encodeURIComponent(body)}`
+      setMailtoOpened(true)
+      return
+    }
+
     setIsSubmitting(true)
 
-    // Simulate form submission - replace with actual form handler (Formspree, etc.)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-    setIsSubmitting(false)
-    setSubmitted(true)
-    setFormData({ name: '', email: '', subject: '', message: '' })
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`)
+      }
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    } catch {
+      setError(
+        'Something went wrong sending your message. Please try again, or email thecraftistuk@gmail.com directly.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (
@@ -186,8 +230,38 @@ export function Contact() {
                   <p className="text-ghost/70 font-body">Thanks for reaching out. I'll get back to you soon.</p>
                 </div>
               </div>
+            ) : mailtoOpened ? (
+              <div className="h-full flex items-center justify-center">
+                <div className="text-center p-8 bg-cyan/10 border border-cyan/30">
+                  <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-cyan/50 bg-cyan/20">
+                    <svg className="w-8 h-8 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-display text-2xl text-white mb-2">ALMOST THERE</h3>
+                  <p className="text-ghost/70 font-body">
+                    Your email app should open with your message ready to send. If
+                    nothing happened, email{' '}
+                    <a
+                      href="mailto:thecraftistuk@gmail.com"
+                      className="text-cyan hover:text-white transition-colors"
+                    >
+                      thecraftistuk@gmail.com
+                    </a>{' '}
+                    directly.
+                  </p>
+                </div>
+              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div
+                    role="alert"
+                    className="p-4 bg-magenta/10 border border-magenta/30 text-magenta text-sm font-body"
+                  >
+                    {error}
+                  </div>
+                )}
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-ghost/80 text-sm mb-2 font-heading tracking-wide uppercase">
