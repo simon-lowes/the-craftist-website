@@ -18,12 +18,12 @@
     "test:a11y": "playwright test a11y"
   },
   "dependencies": {
-    "react": "19.2.7",
+    "react": "19.2.8",
     "react-dom": "19.2.7",
     "react-router-dom": "^7.18.1"
   },
   "overrides": {
-    "react": "19.2.7",
+    "react": "19.2.8",
     "react-dom": "19.2.7"
   },
   "devDependencies": {
