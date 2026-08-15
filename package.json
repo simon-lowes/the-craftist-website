@@ -45,7 +45,7 @@
     "eslint-plugin-security": "^4.0.1",
     "framer-motion": "^12.43.0",
     "globals": "^17.9.0",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.1",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
