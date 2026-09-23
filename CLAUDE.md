@@ -48,3 +48,8 @@ public/
 
 ## Local Folder
 `Coding/Sanjay Website/` (repo: `simon-lowes/the-craftist-website`)
+
+## CI and Dependabot
+- `smoke-test.yml` and `gitleaks.yml` run on every PR; CodeQL runs via default setup.
+- `dependabot-auto-merge.yml` enables auto-merge for non-major Dependabot bumps once the required checks pass.
+- A Claude-based `claude-review` job used to run in that workflow. It was removed in September 2026 after failing on every PR since July (expired `CLAUDE_CODE_OAUTH_TOKEN`, plus upstream bugs) with nothing depending on it. The `CLAUDE_CODE_OAUTH_TOKEN` secret can be deleted. To bring it back, see https://code.claude.com/docs/en/github-actions.
