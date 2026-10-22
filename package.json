@@ -2,7 +2,7 @@
   "name": "the-craftist-website",
   "private": true,
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.12.0"
   },
   "version": "1.0.0",
   "type": "module",
@@ -23,8 +23,8 @@
     "react-router-dom": "^7.18.4"
   },
   "overrides": {
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react": "$react",
+    "react-dom": "$react-dom"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
