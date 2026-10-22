@@ -15,3 +15,10 @@ updates:
         patterns:
           - "react"
           - "react-dom"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
